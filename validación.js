@@ -9,7 +9,7 @@
             return;
           }
           if (!validarPassword(password)) {
-            console.log("Error: La contraseña debe tener al menos 8 caracteres");
+            console.log("Password debe de ser mayor o igual a 8 caracteres");
             return;
           }
           console.log("inicio de sesion exitoso");
