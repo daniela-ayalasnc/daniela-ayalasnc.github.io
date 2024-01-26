@@ -1,73 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      background-color: #138b87;
-    }
-
-    form {
-      background-color: #fff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-      max-width: 400px;
-      width: 100%;
-    }
-
-    label {
-      display: block;
-      margin-bottom: 8px;
-    }
-
-    input {
-      width: 100%;
-      padding: 8px;
-      margin-bottom: 16px;
-      box-sizing: border-box;
-    }
-
-    button {
-      background-color: #4caf50;
-      color: #fff;
-      padding: 10px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      width: 100%;
-    }
-
-    button:hover {
-      background-color: #45a049;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <title>Título de la Página</title>
 </head>
 <body>
+    <div class="login-box">
+        <h2>Login</h2>
+        <form id="loginForm">
+          <div class="user-box">
+            <input type="email" id="emailInput" required>
+            <label>Email</label>
+          </div>
+          <div class="user-box">
+            <input type="password" id="passwordInput" required>
+            <label>Password</label>
+          </div>
+          <a href="#" id="submitButton">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            Submit
+          </a>
+        </form>
+      </div>
 
-  <form>
-    <label for="nombre">Nombre:</label>
-    <input type="text" id="nombre" name="nombre" >
+    <script src="/script.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("submitButton").addEventListener("click", function(event) {
+          event.preventDefault();
 
-    <label for="correo">Correo:</label>
-    <input type="email" id="correo" name="correo" >
+          // Obtener los valores del correo y la contraseña
+          var email = document.getElementById("emailInput").value;
+          var password = document.getElementById("passwordInput").value;
 
-    <label for="contrasena">Contraseña:</label>
-    <input type="password" id="contrasena" name="contrasena" >
+          // Validar el correo electrónico
+          if (!validarEmail(email)) {
+            console.log("Error: Correo electrónico no válido");
+            return;
+          }
 
-    <button type="submit">Iniciar sesión</button>
-  </form>
+          // Validar la contraseña
+          if (!validarPassword(password)) {
+            console.log("Error: La contraseña debe tener al menos 8 caracteres");
+            return;
+          }
 
+          // Si ambos son válidos, puedes enviar el formulario o realizar otras acciones
+          console.log("Formulario enviado con éxito");
+        });
+      });
+
+      // Función para validar el correo electrónico
+      function validarEmail(email) {
+        // Expresión regular simple para validar el formato del correo electrónico
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      }
+
+      // Función para validar la contraseña
+      function validarPassword(password) {
+        return password.length >= 8;
+      }
+    </script>
 </body>
-<script src="/validación".js"></script>
-
 </html>
