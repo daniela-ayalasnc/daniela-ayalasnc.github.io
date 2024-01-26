@@ -1,33 +1,37 @@
-const nombre = document.getElementById("nombre");
-const correo = document.getElementById("correo");
-const contraseña = document.getElementById("contraseña");
-const formulario = document.getElementById("formulario");
-const mensaje = document.getElementById("peligro");
 
-formulario.addEventListener('submit', e => {
-    e.preventDefault();
-    let advertencias = "";
-    let regexEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    let debeEnviar = false;
+      document.addEventListener("DOMContentLoaded", function() {
+        document.getElementById("submitButton").addEventListener("click", function(event) {
+          event.preventDefault();
 
-    if (nombre.value.length < 5) {
-        advertencias += 'El nombre de usuario es demasiado corto. ';
-        debeEnviar = true;
-    }
+          // Obtener los valores del correo y la contraseña
+          var email = document.getElementById("emailInput").value;
+          var password = document.getElementById("passwordInput").value;
 
-    if (!regexEmail.test(correo.value)) {
-        advertencias += 'El correo electrónico ingresado no es válido. ';
-        debeEnviar = true;
-    }
+          // Validar el correo electrónico
+          if (!validarEmail(email)) {
+            console.log("Error: Correo electrónico no válido");
+            return;
+          }
 
-    if (contraseña.value.length < 8) {
-        advertencias += 'La contraseña es demasiado corta. ';
-        debeEnviar = true;
-    }
+          // Validar la contraseña
+          if (!validarPassword(password)) {
+            console.log("Error: La contraseña debe tener al menos 8 caracteres");
+            return;
+          }
 
-    if (debeEnviar) {
-        mensaje.innerHTML = advertencias;
-    } else {
-        mensaje.innerHTML = "Formulario enviado con éxito";
-    }
-});
+          // Si ambos son válidos, puedes enviar el formulario o realizar otras acciones
+          console.log("Formulario enviado con éxito");
+        });
+      });
+
+      // Función para validar el correo electrónico
+      function validarEmail(email) {
+        // Expresión regular simple para validar el formato del correo electrónico
+        var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+      }
+
+      // Función para validar la contraseña
+      function validarPassword(password) {
+        return password.length >= 8;
+      }
